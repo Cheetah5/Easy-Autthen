@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     //Implicit
     var strUser: String?
     var strPassWord: String?
+    let dicUser = ["Newly": "1234", "Doramon": "5678", "Nobita": "1234"]
     
     
     
@@ -45,23 +46,53 @@ class ViewController: UIViewController {
         
         //Call checkSpace
         if checkSpace(myString: strUser!) && checkSpace(myString: strPassWord!) {
+        
+            //No Space
             print("No Space")
             showMessage(strMessage: "")
+            checkUserAndPassWord(strUser: strUser!, strPassWord: strPassWord!)
+            
         }   else {
+            
+            //Have Space
             print("Have Space")
-            showMessage(strMessage: "Please Fill Every Blank")
+            showMessage(strMessage: "Please Fill in the Blank")
         }
-
-        
     
     }   //Login Button
 
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }   //Main Method
+    
+    func checkUserAndPassWord(strUser: String, strPassWord: String) -> Void {
+        
+        //Check User
+        if let testUser = dicUser[strUser] {
+            print("testUser ==> \(testUser)")
+           //Password True
+            if strPassWord == testUser {
+                showMessage(strMessage: "Welcome to SNRU")
+            } else{
+            
+              //Password False
+                showMessage(strMessage: "Plase Try Again")
+            
+            }
+          
+        }
+        
+        
+        else {
+            print("testUser nil")
+            showMessage(strMessage: "No" + strUser + "in my Database")
+    
+        }
+        
+       
+    }
     
     func showMessage(strMessage: String) -> Void {
        messageLable.text = strMessage
@@ -83,7 +114,7 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }   //End didReceive Method
+   
 
-
-}
+}   //Main Class
 
