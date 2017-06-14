@@ -44,11 +44,14 @@ class ViewController: UIViewController {
         print("intPassWord ==> \(intPassWord!)")
         
         //Call checkSpace
-        if checkSpace(myString: strUser!) {
-            print("User OK")
+        if checkSpace(myString: strUser!) && checkSpace(myString: strPassWord!) {
+            print("No Space")
+            showMessage(strMessage: "")
         }   else {
-            print("Blank User")
+            print("Have Space")
+            showMessage(strMessage: "Please Fill Every Blank")
         }
+
         
     
     }   //Login Button
@@ -59,6 +62,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }   //Main Method
+    
+    func showMessage(strMessage: String) -> Void {
+       messageLable.text = strMessage
+    }
     
     func checkSpace(myString: String) -> Bool {
         let intString = myString.characters.count
